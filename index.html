@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/style.css"/>
+        <title>login</title>
+    </head>
+    <body>
+        <h1>
+            login with firebase !!!
+        </h1>
+        
+        <input  id="useremail">
+        <input id="userpass">
+        
+        <button  id="signupbrn">sign Up</button>
+           <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js"></script>
+
+
+<script>
+  //Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBbl23zCwWLLZJlCPk-BZxzlWmO4r_8x5c",
+    authDomain: "need-electronics.firebaseapp.com",
+    projectId: "need-electronics",
+    storageBucket: "need-electronics.appspot.com",
+    messagingSenderId: "450397395955",
+    appId: "1:450397395955:web:44cf4c610a95ef0bec1086",
+    measurementId: "${config.measurementId}"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+
+
+var emailsignup=document.getElementById("useremail")
+  var passswordsignup=document.getElementById("userpass")
+
+
+
+  //================Signup With Email and Password==========================
+  signupbtn.onclick=function(){
+      signupbtn.disabled=true;
+      signupbtn.textContent="Registering Your Account! Please Wait";
+      firebase.auth().createUserWithEmailAndPassword(emailsignup.value,passswordsignup.value).then(function(response){
+     
+alert("successful");
+
+
+
+      })
+      .catch(function(error){
+        signupbtn.disabled=false;
+        signupbtn.textContent="Sign Up";
+          console.log(error);
+  alert("Something went wrong");
+      })
+
+  }
+
+
+</script>
+</body>
+</html>
+
+    </body>
+</html>
