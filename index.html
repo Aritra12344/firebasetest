@@ -84,6 +84,7 @@
     <script src="main.js"></script>
          <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -106,8 +107,8 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-
-
+// Define database
+const database = firebase.database()
 
   var signupbtn=document.getElementById("signupbtn")
   var emailsignup=document.getElementById("useremail")
@@ -123,7 +124,24 @@ var zip=document.getElementById("zip").value;
       signupbtn.disabled=true;
       signupbtn.textContent="Registering Your Account! Please Wait";
       firebase.auth().createUserWithEmailAndPassword(emailsignup.value,passswordsignup.value).then(function(response){
-        alert("successful");
+        
+var user = auth.currentUser
+
+    // Add this user to Firebase Database
+    var database_ref = database.ref()
+
+    // Create User data
+    var user_data = {
+      City : city,
+      Zip : zip, 
+
+      last_login : Date.now()
+    }
+
+    // Push to Firebase Database
+    database_ref.child('users/' + user.uid).set(user_data)
+
+alert("successful");
             
 
       })
