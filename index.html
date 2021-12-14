@@ -126,7 +126,7 @@ var zip=document.getElementById("zip").value;
       signupbtn.textContent="Registering Your Account! Please Wait";
       firebase.auth().createUserWithEmailAndPassword(emailsignup.value,passswordsignup.value).then(function(response){
         
-var user = auth.currentUser
+var user = auth.currentUser;
 
     // Add this user to Firebase Database
     var database_ref = database.ref()
