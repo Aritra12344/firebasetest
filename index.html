@@ -8,6 +8,8 @@
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="material-design-iconic-font.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- Main css -->
 
   <!-- Main css -->
     <link rel="stylesheet" href="style.css">
@@ -25,37 +27,13 @@
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
                         
+                            
                             <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
-                            </div>
-                        <div class="form-group">
-                                <label for="number"><i class="zmdi zmdi-phone material-icons-name"></i></label>
-                                <input type="text" name="number" id="number" placeholder="Your Phone Number"/>
-                            </div>
-                        <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-home material-icons-name"></i></label>
-                                <input type="text" name="street" id="street" placeholder="Street Adress"/>
-                            </div>
-                        
-                        <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-home material-icons-name"></i></label>
-                               <input type="text" name="city" id="city" placeholder="Your City"/>
-                               </div>
-                        <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-home material-icons-name"></i></label>
-                                <input type="text" name="state" id="state" placeholder="State"/>
-                            </div>
-                        <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-home material-icons-name"></i></label>
-                                <input type="number" name="zip" id="zip" placeholder="Your Zip Code"/>
-                                     </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i></label>
                                 <input type="email" name="email" id="useremail" placeholder="Your Email"/>
                             </div>
                             <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <label for="pass"><i class="fa fa-lock" aria-hidden="true"></label>
                                   <input type="password" id="userpass" class="form-control" placeholder="Password" required autofocus="">
 
                            </div>
@@ -115,8 +93,7 @@ const database = firebase.database()
   var emailsignup=document.getElementById("useremail")
   var passswordsignup=document.getElementById("userpass")
 
-var city=document.getElementById("city").value;
-var zip=document.getElementById("zip").value;
+
 
 
 
@@ -126,31 +103,17 @@ var zip=document.getElementById("zip").value;
       signupbtn.textContent="Registering Your Account! Please Wait";
       firebase.auth().createUserWithEmailAndPassword(emailsignup.value,passswordsignup.value).then(function(response){
         
-var user = auth.currentUser;
+var user = auth.currentUser
 
-    // Add this user to Firebase Database
-    var database_ref = database.ref()
-
-    // Create User data
-    var user_data = {
-      City : city,
-      Zip : zip, 
-
-      last_login : Date.now()
-    }
-
-    // Push to Firebase Database
-    database_ref.child('users/' + user.uid).set(user_data)
-
-alert("successful");
+alert("USER SUCCESSFULLY REGISTERED");
             
-
+signupbtn.textContent="Registered";
       })
       .catch(function(error){
         signupbtn.disabled=false;
         signupbtn.textContent="Sign Up";
           console.log(error);
-  alert("Something went wrong");
+  alert("SOMETHING WENT WRONG");
       })
 
 
